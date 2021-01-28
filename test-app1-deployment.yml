@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: vote
+  labels:
+    tier: frontend1
+
+spec:
+  replicas: 3
+  template: #under template section is pod configuration as pod yaml
+    metadata:
+      name: vote
+      labels:
+        tier: frontend1
+
+    spec:
+      containers:
+        - name: vote
+          image: wayuslatan/test-app1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: port8080
+  selector:
+    matchLabels:
+      tier: frontend1

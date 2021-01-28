@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: elasticsearch1
+  labels:
+    tier: db1
+    test: public
+    app: elasticsearch
+
+spec:
+  replicas: 1
+  template: #under template section is pod configuration as pod yaml
+    metadata:
+      name: elasticsearch1
+      labels:
+        tier: db1
+        test: public
+        app: elasticsearch
+
+    spec:
+      containers:
+        - name: elasticsearch1
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: db-data
+          env:
+            - name: discovery.type
+              value: single-node
+          ports:
+            - containerPort: 9200
+              name: port9200
+      #need to delegate permission on node path in order to let k8s service use that dir
+      volumes:
+        - name: db-data
+          hostPath:
+            # directory location on host
+            path: /db-data
+            # this field is optional
+            type: DirectoryOrCreate 
+  selector:
+    matchLabels:
+      tier: db1
+      test: public
+      app: elasticsearch

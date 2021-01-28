@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{OPTION1}} vs {{OPTION2}} vs {{OPTION3}}!</title>
+    <base href="/test1.html">
+</head>
+  <body>
+    <div>
+      <div>
+        <h3>{{OPTION1}} vs {{OPTION2}} vs {{OPTION3}}!</h3>
+        <form id="choice" name='form' method="POST" action="/">
+          <button id="a" type="submit" name="option" class="a" value={{OPTION1}}>{{OPTION1}}</button>
+          <button id="b" type="submit" name="option" class="b" value={{OPTION2}}>{{OPTION2}}</button>
+          <button id="c" type="submit" name="option" class="c" value={{OPTION3}}>{{OPTION3}}</button>
+        </form>
+        <div id="hostname">
+          Processed by container ID {{hostname}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

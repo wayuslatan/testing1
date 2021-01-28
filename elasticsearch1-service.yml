@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch1
+  labels:
+    tier: db1
+    app: elasticsearch
+
+spec:
+  type: ClusterIP
+  ports:
+      - port: 9200
+        name: default
+        targetPort: 9200
+  selector: #must be the same with pod label
+    tier: db1
+    app: elasticsearch

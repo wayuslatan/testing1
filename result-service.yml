@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: result
+  labels:
+    tier: frontend2
+
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 8080 #port on the pod
+      port: 8080 #port of the service itself
+      nodePort: 30002 #30000-32767 #port of the node
+  selector: #must be the same with pod label
+    tier: frontend2
