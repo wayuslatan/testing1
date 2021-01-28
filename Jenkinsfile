@@ -61,8 +61,9 @@ pipeline {
     }
     
     stage('Deployment APP1') {
-        //agent none
+        agent none
         steps {
+            sh 'whoami';
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
     }
