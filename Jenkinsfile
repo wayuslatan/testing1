@@ -61,13 +61,13 @@ pipeline {
     }
     
     stage('Deployment APP1') {
-        agent any
+        agent none
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
     }
     stage('Deployment APP2') {
-        agent any
+        agent none
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
