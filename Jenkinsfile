@@ -49,12 +49,14 @@ pipeline {
     }
     stage('Remove Unused docker image1') {
       steps{
-        sh "docker rmi $registry1:$BUILD_NUMBER"
+        //sh "docker rmi $registry1:$BUILD_NUMBER"
+        sh "docker rmi $registry1"
       }
     }
     stage('Remove Unused docker image2') {
       steps{
-        sh "docker rmi $registry2:$BUILD_NUMBER"
+        //sh "docker rmi $registry2:$BUILD_NUMBER"
+        sh "docker rmi $registry2"
       }
     }
     stage('Deployment APP1') {
