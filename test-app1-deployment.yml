@@ -15,6 +15,7 @@ spec:
         tier: frontend1
 
     spec:
+      #terminationGracePeriodSeconds: 30
       containers:
         - name: vote
           image: wayuslatan/test-app1

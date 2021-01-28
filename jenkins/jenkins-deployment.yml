@@ -16,6 +16,7 @@ spec:
       containers:
         - name: jenkins
           image: wayuslatan/jenkins-k8s
+          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 0

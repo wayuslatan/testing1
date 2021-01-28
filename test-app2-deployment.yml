@@ -15,6 +15,7 @@ spec:
         tier: frontend2
 
     spec:
+      #terminationGracePeriodSeconds: 30
       containers:
         - name: result
           image: wayuslatan/test-app2

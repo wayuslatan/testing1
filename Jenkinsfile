@@ -65,13 +65,13 @@ pipeline {
         agent { label 'master' }
         steps {
             sh 'hostname';
-            sh 'kubectl apply -f test-app1-deployment.yml';
+            sh 'kubectl rollout restart -f test-app1-deployment.yml';
         }
     }
     stage('Deployment APP2') {
         agent { label 'master' }
         steps {
-            sh 'kubectl apply -f test-app1-deployment.yml';
+            sh 'kubectl rollout restart -f test-app2-deployment.yml';
         }
     }
   }
