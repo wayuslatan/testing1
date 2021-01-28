@@ -1,5 +1,5 @@
 FROM jenkins/jenkins:lts
-USER ROOT
+USER root
 
 # Install Docker
 RUN apt-get -qq update && \
