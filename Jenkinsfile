@@ -5,7 +5,7 @@ pipeline {
     registryCredential = 'docker/wayuslatan'
     dockerImage = ''
   }
-  agent any
+  agent docker-agent
   stages {
     stage('Cloning Git') {
       steps {
