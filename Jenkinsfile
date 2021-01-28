@@ -16,7 +16,8 @@ pipeline {
     stage('Building image1') {
       steps{
         script {
-          dockerImage = docker.build registry1 + ":$BUILD_NUMBER"
+          //dockerImage = docker.build registry1 + ":$BUILD_NUMBER"
+          dockerImage= docker.build(registry1, "-f /test1 .")
         }
       }
     }
@@ -32,7 +33,8 @@ pipeline {
     stage('Building image2') {
       steps{
         script {
-          dockerImage = docker.build registry2 + ":$BUILD_NUMBER"
+          //dockerImage = docker.build registry2 + ":$BUILD_NUMBER"
+          dockerImage= docker.build(registry2, "-f /test2 .")
         }
       }
     }
