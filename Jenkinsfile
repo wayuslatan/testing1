@@ -6,7 +6,7 @@ pipeline {
     dockerImage = ''
   }
 
-  agent { node { label 'docker-agent' } } 
+/*  agent { node { label 'docker-agent' } } 
   stages {
     stage('Cloning Git') {
       steps {
@@ -59,16 +59,16 @@ pipeline {
         sh "docker rmi $registry2"
       }
     }
-    
+*/    
     stage('Deployment APP1') {
-        agent none
+        agent any
         steps {
-            sh 'whoami';
+            sh 'hostname';
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
     }
     stage('Deployment APP2') {
-        //agent none
+        agent any
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
