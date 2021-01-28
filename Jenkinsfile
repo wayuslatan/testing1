@@ -6,7 +6,7 @@ pipeline {
     dockerImage = ''
   }
 
-  agent agent { node { label 'docker-agent' } } 
+  agent { node { label 'docker-agent' } } 
   stages {
     stage('Cloning Git') {
       steps {
