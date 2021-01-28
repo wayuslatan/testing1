@@ -62,14 +62,14 @@ pipeline {
     }
     
     stage('Deployment APP1') {
-        agent any
+        agent { label 'master' }
         steps {
             sh 'hostname';
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
     }
     stage('Deployment APP2') {
-        agent any
+        agent { label 'master' }
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
