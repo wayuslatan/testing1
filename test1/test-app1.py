@@ -27,7 +27,7 @@ def test1():
 
 		option = request.form['option']
 		#data = json.dumps({'timestamp': datetime.now(), 'option': option, 'hostname': hostname})
-		#revision2
+		#revision3
 		data = {
 			'time': datetime.now(),
 			'option': option,
