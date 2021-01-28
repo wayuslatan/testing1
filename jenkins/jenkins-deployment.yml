@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts
+          image: wayuslatan/jenkins-k8s
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 0
