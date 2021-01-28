@@ -6,9 +6,10 @@ pipeline {
     dockerImage = ''
   }
 
-/*  agent { node { label 'docker-agent' } } 
+//  agent { node { label 'docker-agent' } } 
+  agent any
   stages {
-    stage('Cloning Git') {
+/*    stage('Cloning Git') {
       steps {
         git 'https://github.com/wayuslatan/testing1.git'
       }
@@ -61,14 +62,14 @@ pipeline {
     }
 */    
     stage('Deployment APP1') {
-        agent any
+        //agent none
         steps {
             sh 'hostname';
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
     }
     stage('Deployment APP2') {
-        agent any
+        //agent none
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
         }
