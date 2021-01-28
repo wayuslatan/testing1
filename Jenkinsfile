@@ -59,6 +59,9 @@ pipeline {
         sh "docker rmi $registry2"
       }
     }
+    agent {
+        label "kubernetes"
+    }
     stage('Deployment APP1') {
         steps {
             sh 'kubectl apply -f test-app1-deployment.yml';
