@@ -38,7 +38,7 @@ spec:
         - name: db-data
           hostPath:
             # directory location on host
-            path: /db-data
+            path: /mnt/db-data
             # this field is optional
             type: DirectoryOrCreate 
   selector:

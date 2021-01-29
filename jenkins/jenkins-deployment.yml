@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: wayuslatan/jenkins-k8s
+          image: wayuslatan/jenkins-k8s-edited
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
@@ -35,7 +35,7 @@ spec:
         - name: jenkins-home
           hostPath:
             # directory location on host
-            path: /jenkins-home
+            path: /mnt/jenkins-home
             # this field is optional
             type: DirectoryOrCreate 
   selector:
