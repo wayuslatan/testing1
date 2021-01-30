@@ -64,6 +64,7 @@ pipeline {
     stage('Deployment DB + Service') {
         agent { label 'master' }
         steps {
+          script {  
             sh 'hostname';
             try {
               sh 'kubectl rollout restart -f elasticsearch1-deployment.yml';
@@ -73,12 +74,14 @@ pipeline {
             }
             sh 'kubectl apply -f elasticsearch1-deployment.yml';
             sh 'kubectl apply -f elasticsearch1-service.yml';
+          }
         }
     }
 
     stage('Deployment Kibana + Service') {
         agent { label 'master' }
         steps {
+          script {
             sh 'hostname';
             try {
               sh 'kubectl rollout restart -f kibana1-deployment.yml 2> /dev/null';
@@ -88,12 +91,14 @@ pipeline {
             }
             sh 'kubectl apply -f kibana1-deployment.yml';
             sh 'kubectl apply -f kibana1-service.yml';
+          }
         }
     }
     
     stage('Deployment APP1') {
         agent { label 'master' }
         steps {
+          script {
             sh 'hostname';
             try {
               sh 'kubectl rollout restart -f test-app1-deployment.yml 2> /dev/null';
@@ -103,11 +108,13 @@ pipeline {
             }
             sh 'kubectl apply -f test-app1-deployment.yml';
             sh 'kubectl apply -f vote-service.yml';
+          }
         }
     }
     stage('Deployment APP2') {
         agent { label 'master' }
         steps {
+          script {
             try {
               sh 'kubectl rollout restart -f test-app2-deployment.yml 2> /dev/null';
             }
@@ -116,6 +123,7 @@ pipeline {
             }
             sh 'kubectl apply -f test-app2-deployment.yml';
             sh 'kubectl apply -f result-service.yml'
+          }
         }
     }
   }
