@@ -8,7 +8,7 @@ import json
 
 print(datetime.now())
 
-es=Elasticsearch([{'host':'elasticsearch1','port':9200}])
+es=Elasticsearch([{'host':'elasticsearch','port':9200}])
 app = Flask(__name__)
 
 os.environ['OPTION1'] = 'GPU'
@@ -22,7 +22,7 @@ def test1():
 	option = None
 
 	if request.method == 'POST':
-		es=Elasticsearch([{'host':'elasticsearch1','port':9200}])
+		es=Elasticsearch([{'host':'elasticsearch','port':9200}])
 		#redis = get_redis()
 
 		option = request.form['option']

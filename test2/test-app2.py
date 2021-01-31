@@ -3,7 +3,7 @@ from elasticsearch import Elasticsearch
 import json
 import socket
 
-es=Elasticsearch([{'host':'elasticsearch1','port':9200}])
+es=Elasticsearch([{'host':'elasticsearch','port':9200}])
 app = Flask(__name__)
 
 hostname = socket.gethostname()
@@ -15,7 +15,7 @@ def test2():
     GPU = 0
 
     if request.method == 'GET':
-        es=Elasticsearch([{'host':'elasticsearch1','port':9200}])
+        es=Elasticsearch([{'host':'elasticsearch','port':9200}])
         res = es.search(index='voting', filter_path=['hits.hits._*'], size=10000)
 
         for each in res['hits']['hits']:
