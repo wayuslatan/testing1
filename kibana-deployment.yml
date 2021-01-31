@@ -8,21 +8,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kibana1
+  name: kibana
   labels:
-    app: kibana1
+    app: kibana
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kibana1
+      app: kibana
   template:
     metadata:
       labels:
-        app: kibana1
+        app: kibana
     spec:
       containers:
-      - name: kibana1
+      - name: kibana
         image: docker.elastic.co/kibana/kibana-oss:7.5.2
         #image: docker.elastic.co/kibana/kibana-oss:6.2.4
         securityContext:
@@ -33,9 +33,9 @@ spec:
         env:
           #obsolete env
           - name: ELASTICSEARCH_URL
-            value: http://elasticsearch1:9200
+            value: http://elasticsearch:9200
           - name: ELASTICSEARCH_HOSTS
-            value: http://elasticsearch1:9200
+            value: http://elasticsearch:9200
         ports:
         - containerPort: 5601
           name: ui

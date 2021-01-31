@@ -61,19 +61,29 @@ pipeline {
       }
     }
 
+    stage('MetalLB Configmap') {
+        agent { label 'master' }
+        steps {
+          script {  
+            sh 'hostname';
+            sh 'kubectl apply -f metallb-configmap.yml';
+          }
+        }
+    }
+
     stage('Deployment DB + Service') {
         agent { label 'master' }
         steps {
           script {  
             sh 'hostname';
             try {
-              sh 'kubectl rollout restart -f elasticsearch1-deployment.yml';
+              sh 'kubectl rollout restart -f elasticsearch-deployment.yml';
             }
             catch (err) {
               echo err.getMessage()
             }
-            sh 'kubectl apply -f elasticsearch1-deployment.yml';
-            sh 'kubectl apply -f elasticsearch1-service.yml';
+            sh 'kubectl apply -f elasticsearch-deployment.yml';
+            sh 'kubectl apply -f elasticsearch-service.yml';
           }
         }
     }
@@ -84,13 +94,14 @@ pipeline {
           script {
             sh 'hostname';
             try {
-              sh 'kubectl rollout restart -f kibana1-deployment.yml 2> /dev/null';
+              sh 'kubectl rollout restart -f kibana-deployment.yml 2> /dev/null';
             }
             catch (err) {
               echo err.getMessage()
             }
-            sh 'kubectl apply -f kibana1-deployment.yml';
-            sh 'kubectl apply -f kibana1-service.yml';
+            sh 'kubectl apply -f kibana-deployment.yml';
+            sh 'kubectl apply -f kibana-lb.yml';
+            //sh 'kubectl apply -f kibana-service.yml';
           }
         }
     }
@@ -107,7 +118,8 @@ pipeline {
               echo err.getMessage()
             }
             sh 'kubectl apply -f test-app1-deployment.yml';
-            sh 'kubectl apply -f vote-service.yml';
+            sh 'kubectl apply -f vote-lb.yml';
+            //sh 'kubectl apply -f vote-service.yml';
           }
         }
     }
@@ -122,7 +134,8 @@ pipeline {
               echo err.getMessage()
             }
             sh 'kubectl apply -f test-app2-deployment.yml';
-            sh 'kubectl apply -f result-service.yml'
+            sh 'kubectl apply -f result-lb.yml'
+            //sh 'kubectl apply -f result-service.yml'
           }
         }
     }
