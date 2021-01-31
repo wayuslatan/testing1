@@ -61,12 +61,13 @@ pipeline {
       }
     }
 
-    stage('MetalLB Configmap') {
+    stage('MetalLB Configmap + nginx-metallb-ingress') {
         agent { label 'master' }
         steps {
           script {  
             sh 'hostname';
             sh 'kubectl apply -f metallb-configmap.yml';
+            sh 'nginx-metallb-ingress.yml';
           }
         }
     }
